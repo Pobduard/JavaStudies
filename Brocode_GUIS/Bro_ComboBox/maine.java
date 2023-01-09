@@ -1,7 +1,7 @@
-package Bro_JCheckBox;
+package Bro_ComboBox;
 
 /* 
- * 7:27:00  Check Box
+ * 7:46:12      Combinaunbotono lugar editable, y una lista de cascada
  */
 public class maine {
     public static void main(String[] args) {
