@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        ".",
+        "Bro_Jframe",
+        "Bro_JPanel",
+        "Bro_Label"
+    ]
+}
