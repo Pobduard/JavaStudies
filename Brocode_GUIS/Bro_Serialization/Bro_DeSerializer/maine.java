@@ -43,5 +43,17 @@ public class maine {
  *	   //					    4.- La definicion de la clase (el archivo .class ) ensi no seguarda, se debe de castear el tipo de objeto (No se guarda que tipo era Originalmente en si)
  *	   //					    5.- serialVersionUID es una version unica de ID
  */
+
+ /* 
+  *   //SerialVersionUID =	serialVersionUID is a unique ID that functions like a version #
+*	   //					verifies that the sender and receiver of a serialized object,
+*	   //					have loaded classes for that object that are compatible
+*	   //					Ensures object will be compatible between machines
+! Basicamente, es como una "ID" que verifica que el mensajero y el recibidor, tenagn cargadas clases que sean exactamente iguales (Para que asi se pueda procesar el Objeto Correctamente)
+*	   //					Number must match. otherwise this will cause a InvalidClassException
+*	   //					A SerialVersionUID will be calculated based on class properties, members, etc.
+*	   //					A serializable class can declare its own serialVersionUID explicitly (recommended)
+! Es Parecido a un Hash, en el sentido que es un Numero calculado a patir del los miembros propiedades etc de la clase
+*/
     }
 }

@@ -4,5 +4,8 @@
         "Bro_Jframe",
         "Bro_JPanel",
         "Bro_Label"
-    ]
+    ],
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }

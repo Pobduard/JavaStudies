@@ -30,5 +30,10 @@ public class maineSerialization {
 
 
     System.out.println("ObjectInfo Saved on TryFolder! :D");
+
+    //! Eso es para ver el SerialVersion, es de tipo long, y se saca con toda esa monda:
+    long serialVersionUID = ObjectStreamClass.lookup(user.getClass()).getSerialVersionUID();
+    System.out.println(serialVersionUID);       /* 6999954070042753286 Nos dio en el Serializer, el el DeSerialiazer da: 6999954070042753286 , tons iguales, Yay*/
+    //! Ese Numero, debe ser igual en la Clase de Serializationy en la de DeSerialization, ya que la clase intermedi de ambas deberia ser igual, y como sale de ahi pues eso
     }
 }

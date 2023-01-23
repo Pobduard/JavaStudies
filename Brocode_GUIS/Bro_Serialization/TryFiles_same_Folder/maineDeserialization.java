@@ -40,5 +40,11 @@ public class maineDeserialization {
  *	   //					    4.- La definicion de la clase (el archivo .class ) ensi no seguarda, se debe de castear el tipo de objeto (No se guarda que tipo era Originalmente en si)
  *	   //					    5.- serialVersionUID es una version unica de ID
  */
+
+    //! Eso es para ver el SerialVersion, es de tipo long, y se saca con toda esa monda:
+    long serialVersionUID = ObjectStreamClass.lookup(nombreObjeto.getClass()).getSerialVersionUID();
+    System.out.println(serialVersionUID);   /* 6999954070042753286 Nos dio en el Serializer, el el DeSerialiazer da: 6999954070042753286 , tons iguales, Yay*/
+    //! Ese Numero, debe ser igual en la Clase de Serializationy en la de DeSerialization, ya que la clase intermedi de ambas deberia ser igual, y como sale de ahi pues eso
+   
     }
 }

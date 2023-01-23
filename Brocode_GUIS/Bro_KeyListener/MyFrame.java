@@ -3,6 +3,7 @@ package Bro_KeyListener;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.KeyStroke;
 public class MyFrame extends JFrame implements KeyListener{
     //! Notar que el KeyListener parece tener un Cooldown pequeño
     
