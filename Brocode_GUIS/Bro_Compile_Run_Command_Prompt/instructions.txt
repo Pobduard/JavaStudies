@@ -1,0 +1,9 @@
+compile and run Java with Command Prompt
+----------------------------------------
+1. Make sure you have a Java JDK installed (we did this in lesson #1)
+2. (optional) use a text editor and save a file as .java
+3. Open Command Prompt (windows) or Terminal (Mac) on your computer
+4. set path=C:\Program Files\Java\jdk-14.0.1\bin (where JDK is located)		En mi Caso:		C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot\bin
+5. cd C:\Users\Myname\Desktop (or wherever you java file is)				En mi Caso:		C:\Users\JAIBER A\Desktop\Pob\Code Related\Java\JavaPractice\Brocode_GUIS\Bro_Compile_Run_Command_Prompt\HelloWorld.java
+6. javac HelloWorld.java (to compile to bytecode)							Se crea el Byte Code, osease el que es portable a otros equipos, y es .class
+7. java HelloWorld.java (to run a .class file, it's portable)					Para Correr el ByteCode .class

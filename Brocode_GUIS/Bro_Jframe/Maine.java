@@ -6,6 +6,9 @@ import java.awt.Color;
  * Main 5:27:00 [BroCode]
  */
 public class Maine {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
 //!.
     /* 
