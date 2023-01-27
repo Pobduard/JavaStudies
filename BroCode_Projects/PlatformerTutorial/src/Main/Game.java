@@ -8,7 +8,8 @@ public class Game {
 	public Game(){
 		gamePanel = new GamePanel();
 		gameWindow = new GameWindow(gamePanel);
-		gameWindow.requestFocus();					//! PON AMBOS POR Si ACASO
-		gamePanel.requestFocus();					//!Para que los Inputs de Normal venga aca
+		//gameWindow.requestFocus();					//! PON AMBOS POR Si ACASO
+		gamePanel.requestFocusInWindow();					//!Para que los Inputs de Normal venga aca
+
 	}
 }

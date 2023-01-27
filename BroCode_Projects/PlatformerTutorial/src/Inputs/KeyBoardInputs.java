@@ -14,6 +14,7 @@ public class KeyBoardInputs implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+	System.out.println("keyPressed");
 		switch (e.getKeyCode()) {
 		//+UP
 			case KeyEvent.VK_W:
@@ -36,19 +37,16 @@ public class KeyBoardInputs implements KeyListener{
 				gamePanel.changeXDelta(+5);
 				break;
 		}
-		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//TODO:
-		
+		System.out.println("keyTyped");
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		//TODO:
-		
+		System.out.println("keyReleased");
 	}
 	
 }

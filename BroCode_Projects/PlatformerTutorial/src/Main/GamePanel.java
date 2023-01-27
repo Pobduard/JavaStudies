@@ -17,8 +17,10 @@ public class GamePanel extends JPanel{
 		mouseInputs = new MouseInputs(this);
 		keyBoardInputs = new KeyBoardInputs(this);
 		addKeyListener(keyBoardInputs);				//! Nos Sirve añadir estas clases, porque ya implementan el listener, asi podemos controlar la data alla
-		addMouseListener(mouseInputs);						//! Mira por Teclas: Presionadas, Soltadas, y Cliqueadas (Ademas de si el Mouse entro ono en un area)
-		addMouseMotionListener(mouseInputs);				//!Mira si el Mouse se ha movido, o si ah arrastardo algo
+		//addMouseListener(mouseInputs);						//! Mira por Teclas: Presionadas, Soltadas, y Cliqueadas (Ademas de si el Mouse entro ono en un area)
+		//addMouseMotionListener(mouseInputs);				//!Mira si el Mouse se ha movido, o si ah arrastardo algo
+		this.requestFocusInWindow();
+		System.out.println("Panel from inside: " + this.isFocusOwner());
 	}
 
 	public void changeXDelta(int value){
