@@ -3,6 +3,8 @@ package Main;
 import entities.Player;
 import java.awt.*;
 
+import Levels.LevelManager;
+
 public class Game implements Runnable{
 	
 	private GameWindow gameWindow;
@@ -10,8 +12,16 @@ public class Game implements Runnable{
 	private Thread gameTherad;
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
-
 	private Player player;
+	private LevelManager levelManager;
+
+	public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float SCALE = 1f;				//Intentar que la multiplicacion siempre sea un numero entero
+	public final static int TILES_IN_WIDTH = 26;		//Cuantos cuadrados queremos que sea de ancho
+	public final static int TILES_IN_HEIGHT = 14;		//Cuantos cuadrados queremos que sea de alto
+	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH ;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT ;
 
 	public Game(){
 		initClasses();		//Inicializar las clases de todo (Enemigos, Objestos, Jugador etc)
@@ -28,7 +38,8 @@ public class Game implements Runnable{
 	}
 
 	private void initClasses() {
-		player = new Player(200, 200);
+		player = new Player(200, 200, (int) (64*SCALE), (int) (40*SCALE));
+		levelManager = new LevelManager(this);
 	}
 
 	private void startGameLoop(){
@@ -37,11 +48,13 @@ public class Game implements Runnable{
 	}
 
 	private void update(){
+		levelManager.update();
 		player.update();
 	}
 
 	public void render(Graphics g){
-		player.render(g);
+		levelManager.draw(g);
+		player.render(g);			//lvl detras del jugador
 	}
 
 	@Override

@@ -3,15 +3,13 @@ package entities;
 import java.awt.*;
 import java.awt.image.*;
 
-import java.io.*;
-
-import javax.imageio.ImageIO;
+import utilz.LoadSave;
 
 import static utilz.Constants.PlayerConstants.*;
 
 public class Player extends Entity{
 	private BufferedImage[][] Sprites;
-	private int aniTick, aniIndex, aniSpeed = 15;
+	private int aniTick, aniIndex, aniSpeed = 25;
 	private int playerAction = IDLE;
 	private boolean left, up, right, down;
 	private boolean moving = false, attacking = false;
@@ -22,8 +20,10 @@ public class Player extends Entity{
 
 
 	//! No es necesario poner variables para x y Y porque ya se guardan en la clase "Abstracta"
-	public Player(float x, float y) {
-		super(x, y);
+	public Player(float x, float y, int width, int height) {
+		super(x, y, width, height);
+		this.width = height;
+		this.height = height;
 		loadAnimations();
 	}
 
@@ -34,7 +34,7 @@ public class Player extends Entity{
 	}
 
 	public void render(Graphics g){
-		g.drawImage(Sprites[playerAction][aniIndex], (int)x, (int)y, 128, 80, null);
+		g.drawImage(Sprites[playerAction][aniIndex], (int)x, (int)y, width, height, null);
 	} 
 
 	private void updateAnimationTick() {
@@ -50,23 +50,23 @@ public class Player extends Entity{
 	}
 
 	private void setAnimation() {
-	int startAni =playerAction;
+		int startAni =playerAction;
 
-		if(moving)
-			playerAction = RUNNING;
-		else 
-			playerAction = IDLE;
-		
-		if(attacking)
-			playerAction = ATTACK_1;
+			if(moving)
+				playerAction = RUNNING;
+			else 
+				playerAction = IDLE;
 			
-		if(startAni != playerAction)	// !		!= porque buscamos cambios, para que le permita a toda la animacion reproducirse
-			resetAniTick();
+			if(attacking)
+				playerAction = ATTACK_1;
+				
+			if(startAni != playerAction)	// !		!= porque buscamos cambios, para que le permita a toda la animacion reproducirse
+				resetAniTick();
 	}
 
 	private void resetAniTick() {
 		aniTick = 0;
-		aniIndex= 0;
+		aniIndex = 0;
 	}
 
 	private void updatePos(){
@@ -90,27 +90,16 @@ public class Player extends Entity{
 	}
 
 	private void loadAnimations() {
-		InputStream is = getClass().getResourceAsStream("/resources/player_sprites.png");
-		try {
-			BufferedImage img = ImageIO.read(is);
 
-			Sprites = new BufferedImage[9][6];
-		for (int i = 0; i < Sprites.length; i++) {
-			for (int j = 0; j < Sprites[i].length; j++) {
-				Sprites[i][j] = img.getSubimage(j*64, i*40, 64, 40);
+		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
+
+		Sprites = new BufferedImage[9][6];
+		for (int j = 0; j < Sprites.length; j++) {
+			for (int i = 0; i < Sprites[j].length; i++) {
+				Sprites[j][i] = img.getSubimage(i*64, j*40, 64, 40);
+				}
 			}
 		}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
 
 	public boolean isLeft() {
 		return left;
