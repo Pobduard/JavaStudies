@@ -3,9 +3,11 @@ package entities;
 import java.awt.*;
 import java.awt.image.*;
 
+import Main.Game;
 import utilz.LoadSave;
 
 import static utilz.Constants.PlayerConstants.*;
+import static utilz.HelpMethods.CanMoveHere;
 
 public class Player extends Entity{
 	private BufferedImage[][] Sprites;
@@ -16,25 +18,31 @@ public class Player extends Entity{
 
 
 	private float playerSpeed = 2.0f;
+	private int[][]	lvlData;
+
+	private float xDrawOffSet = 21 * Game.SCALE;	//Los pixels extra del "Hitbox" normal, a la "real" del jugador
+	private float yDrawOffSet = 4 * Game.SCALE;		//Los pixels extra del "Hitbox" normal, a la "real" del jugador
 
 
 
 	//! No es necesario poner variables para x y Y porque ya se guardan en la clase "Abstracta"
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
-		this.width = height;
+		this.width = width;
 		this.height = height;
 		loadAnimations();
+		initHitBox(x, y, 20*Game.SCALE, 28*Game.SCALE);
 	}
 
 	public void update(){
+		updatePos();
 		updateAnimationTick();
 		setAnimation();
-		updatePos();
 	}
 
 	public void render(Graphics g){
-		g.drawImage(Sprites[playerAction][aniIndex], (int)x, (int)y, width, height, null);
+		g.drawImage(Sprites[playerAction][aniIndex], (int)(hitBox.x - xDrawOffSet), (int)(hitBox.y - yDrawOffSet), width, height, null);
+		drawHitBox(g);
 	} 
 
 	private void updateAnimationTick() {
@@ -71,20 +79,31 @@ public class Player extends Entity{
 
 	private void updatePos(){
 		moving = false;		//Pasara y se quedara solo si uno de los de abajo no es verdad
-
-		if(left && !right){
-			x-=playerSpeed;
-			moving = true;
-		} else if(right && !left){
-			x+=playerSpeed;
-			moving = true;
+		if(!left && !right && !up && !down){	//Que no pulsemos nada de nada
+			return;
 		}
 
-		if(down && !up){
-			y+=playerSpeed;
-			moving = true;
-		} else if(up && !down){
-			y-=playerSpeed;
+		float xSpeed = 0, ySpeed = 0;
+
+		if(left && !right){
+			xSpeed = -playerSpeed;}
+		else if(right && !left){
+			xSpeed = playerSpeed;}
+
+		if(up && !down){
+			ySpeed = -playerSpeed;}
+		else if(down && !up){
+			ySpeed = playerSpeed;}
+
+		// if(CanMoveHere(x+xSpeed, y+ySpeed, width, height, lvlData)){	//+ Chequea por lo que seria la sig Posicion, siguiente por la velocidad que lleve
+		// 	this.x += xSpeed;
+		// 	this.y += ySpeed;
+		// 	moving = true;
+		// }
+
+		if(CanMoveHere(hitBox.x+xSpeed, hitBox.y+ySpeed, hitBox.width, hitBox.height, lvlData)){	//+ Chequea por lo que seria la sig Posicion, siguiente por la velocidad que lleve
+			hitBox.x += xSpeed;
+			hitBox.y += ySpeed;
 			moving = true;
 		}
 	}
@@ -100,6 +119,10 @@ public class Player extends Entity{
 				}
 			}
 		}
+
+	public void loadLvlData(int[][] lvlData){
+		this.lvlData = lvlData;
+	}
 
 	public boolean isLeft() {
 		return left;

@@ -16,7 +16,7 @@ public class Game implements Runnable{
 	private LevelManager levelManager;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1f;				//Intentar que la multiplicacion siempre sea un numero entero
+	public final static float SCALE = 2f;				//Intentar que la multiplicacion siempre sea un numero entero
 	public final static int TILES_IN_WIDTH = 26;		//Cuantos cuadrados queremos que sea de ancho
 	public final static int TILES_IN_HEIGHT = 14;		//Cuantos cuadrados queremos que sea de alto
 	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
@@ -32,14 +32,13 @@ public class Game implements Runnable{
 		gamePanel.setFocusable(true);
 		gamePanel.requestFocusInWindow();					//!Para que los Inputs de Normal venga aca
 		
-		
-		
 		startGameLoop();
 	}
 
 	private void initClasses() {
-		player = new Player(200, 200, (int) (64*SCALE), (int) (40*SCALE));
 		levelManager = new LevelManager(this);
+		player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
+		player.loadLvlData(levelManager.getCurrentLevel().getLvlData());
 	}
 
 	private void startGameLoop(){
@@ -59,7 +58,7 @@ public class Game implements Runnable{
 
 	@Override
 	public void run() {
-		double timePerFrame = 1_000_000_000.0 / FPS_SET;		//! Vamos a usar nanosegundos, 9 Ceros = 1 Billon de Nanosegundos= 1 Segundo
+		double timePerFrame = 1000000000.0 / FPS_SET;		//! Vamos a usar nanosegundos, 9 Ceros = 1 Billon de Nanosegundos= 1 Segundo
 		double timePerUpdate = 1_000_000_000.0 / UPS_SET;		//! Un Numero con 1_0 es igual a decir 10, el compilador ingora el _ en numeros, pero nos permite ver mejor a nosotros
 		
 		long previousTime = System.nanoTime();
@@ -103,12 +102,12 @@ public class Game implements Runnable{
 		
 	}
 
-	public Player getPlayer(){
-		return this.player;
-	}
-
 	public void windowFocusLost() {
 		player.resetDirBooleans();
+	}
+
+	public Player getPlayer(){
+		return this.player;
 	}
 
 }

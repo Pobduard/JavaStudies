@@ -4,26 +4,25 @@ import java.awt.*;
 
 import javax.swing.*;
 import Inputs.*;
+import static Main.Game.*;
 
 public class GamePanel extends JPanel{
 
 	public MouseInputs mouseInputs;		//*Usado en + de 1 lugar? Variable. */
-	public KeyBoardInputs keyBoardInputs;
 	private Game game;
 
 	public GamePanel(Game game){
-		this.game = game;
 		mouseInputs = new MouseInputs(this);
-		keyBoardInputs = new KeyBoardInputs(this);
+		this.game = game;
 
 		setPanelSize();
-		addKeyListener(keyBoardInputs);				//! Nos Sirve añadir estas clases, porque ya implementan el listener, asi podemos controlar la data alla
+		addKeyListener(new KeyBoardInputs(this));				//! Nos Sirve añadir estas clases, porque ya implementan el listener, asi podemos controlar la data alla
 		addMouseListener(mouseInputs);						//! Mira por Teclas: Presionadas, Soltadas, y Cliqueadas (Ademas de si el Mouse entro ono en un area)
 		addMouseMotionListener(mouseInputs);				//!Mira si el Mouse se ha movido, o si ah arrastardo algo
 	}
 
 	private void setPanelSize(){
-		Dimension size = new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
 		setPreferredSize(size);
 	}
 

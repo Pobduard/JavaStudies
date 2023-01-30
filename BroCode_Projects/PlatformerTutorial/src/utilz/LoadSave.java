@@ -38,7 +38,7 @@ public class LoadSave {
 	 &		Pero eso deberia ser lo mas sencillo
 	 &		Por eso el "level_one_data.png" es "raro", si le acemos mucho zoom, veremos el nivel ahi representado, pero en pixels
 	 */
-		int[][] lvlData = new int[Game.GAME_HEIGHT][Game.TILES_IN_WIDTH];
+		int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
 		BufferedImage img = GetSpriteAtlas(LEVEL_ONE_DATA);
 
 		for (int j = 0; j < img.getHeight(); j++) {

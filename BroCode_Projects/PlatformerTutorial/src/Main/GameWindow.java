@@ -6,10 +6,8 @@ import java.awt.event.WindowFocusListener;
 import javax.swing.*;
 public class GameWindow extends JFrame{
 	private JFrame frame;
-	GamePanel gamePanel;
 
-	public GameWindow(GamePanel this_gamePanel){
-		this.gamePanel = this_gamePanel;
+	public GameWindow(GamePanel gamePanel){
 		frame = new JFrame("Game");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,14 +20,13 @@ public class GameWindow extends JFrame{
 		frame.addWindowFocusListener(new WindowFocusListener(){
 
 			@Override
-			public void windowGainedFocus(WindowEvent e) {
-			}
-
-			@Override
 			public void windowLostFocus(WindowEvent e) {
 				gamePanel.getGame().windowFocusLost();		//Para poner todos los booleans de direccion a false si se pierde el focus, osease si se sale de la ventana
 			}
-			
+
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
+			}
 		});
 	}
 	
