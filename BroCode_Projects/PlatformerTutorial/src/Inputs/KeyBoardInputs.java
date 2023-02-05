@@ -35,6 +35,10 @@ public class KeyBoardInputs implements KeyListener{
 			case KeyEvent.VK_RIGHT:
 				gamePanel.getGame().getPlayer().setRight(true);
 				break;
+		//+ Espacio
+			case KeyEvent.VK_SPACE:
+				gamePanel.getGame().getPlayer().setJump(true);
+				break;
 		}
 	}
 
@@ -64,6 +68,10 @@ public class KeyBoardInputs implements KeyListener{
 				case KeyEvent.VK_D:
 				case KeyEvent.VK_RIGHT:
 					gamePanel.getGame().getPlayer().setRight(false);
+					break;
+			//+ Espacio
+				case KeyEvent.VK_SPACE:
+					gamePanel.getGame().getPlayer().setJump(false);
 					break;
 			}
 	}
