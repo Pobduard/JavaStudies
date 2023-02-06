@@ -1,6 +1,6 @@
 package gamestates;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -8,12 +8,20 @@ import Levels.*;
 import Main.Game;
 import UI.PauseOverlay;
 import entities.*;
+import utilz.LoadSave;
 
 public class Playing extends State implements Statemethods{
 	private Player player;
 	private LevelManager levelManager;
 	private PauseOverlay pauseOvelay;
 	private boolean paused = false;
+
+	private int xLvlOffset;
+	private int leftBorder = (int)(0.2 * Game.GAME_WIDTH);
+	private int rightBorder = (int)(0.8 * Game.GAME_WIDTH);
+	private int lvlTilesWide = LoadSave.GetLevelData()[0].length;
+	private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;	//Total de Tiles
+	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;		//Total de Pixeles
 
 	public Playing(Game game){
 		super(game);
@@ -40,18 +48,41 @@ public class Playing extends State implements Statemethods{
 		if(!paused){
 			levelManager.update();
 			player.update();
+			checkCloseToBorder();
 		} else {
 					pauseOvelay.update();
 		}
 	}
 
+	private void checkCloseToBorder() {
+		int playerX = (int)(player.getHitBox().x);
+		int diff = playerX - xLvlOffset;
+		//! Que se mueva la pantala, o se pueda mover, controlar el xLvlOffSet
+		if(diff > rightBorder){
+			xLvlOffset += (diff - rightBorder);		//verifica el borde y la posicion actual, como las resta, el offset, sera la cant de pixeles que se encuentre mas alla del borde
+		}
+		else if(diff < leftBorder){
+			xLvlOffset += (diff - leftBorder);	//Mismo de arriba, per puede irse para negativo, lo cual nos sirve
+		}
+		//! Bordes "Harcodeados"
+		if(xLvlOffset > maxLvlOffsetX){
+			xLvlOffset = maxLvlOffsetX;
+		}
+		else if (xLvlOffset < 0){
+			xLvlOffset = 0;
+		}
+	}
+
 	@Override
 	public void draw(Graphics g) {
-		levelManager.draw(g);
-		player.render(g);
+		levelManager.draw(g, xLvlOffset);
+		player.render(g, xLvlOffset);
 
-		if(paused)
+		if(paused){
+			g.setColor(new Color(0,0,0,150));
+			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
 			pauseOvelay.draw(g);
+		}
 	}
 
 	@Override

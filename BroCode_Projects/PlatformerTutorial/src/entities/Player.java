@@ -46,9 +46,9 @@ public class Player extends Entity{
 		setAnimation();
 	}
 
-	public void render(Graphics g){
-		g.drawImage(Sprites[playerAction][aniIndex], (int)(hitBox.x - xDrawOffSet), (int)(hitBox.y - yDrawOffSet), width, height, null);
-		drawHitBox(g);
+	public void render(Graphics g, int lvlOffSet){
+		g.drawImage(Sprites[playerAction][aniIndex], (int)(hitBox.x - xDrawOffSet) - (lvlOffSet), (int)(hitBox.y - yDrawOffSet), width, height, null);
+		drawHitBox(g, lvlOffSet);
 	} 
 
 	private void updateAnimationTick() {
@@ -94,9 +94,13 @@ public class Player extends Entity{
 		moving = false;        //Pasara y se quedara solo si uno de los de abajo no es verdad
 		if(jump){
 			jump();}
-		if (!left && !right && !inAir) {    //Que no pulsemos nada de nada
-			return;
-		}
+		// if (!left && !right && !inAir) {    //Que no pulsemos nada de nada
+		// 	return;
+		// }
+		if(!inAir)
+			if((!left && !right) || left && right)
+				return;
+
 
 		float xSpeed = 0;
 

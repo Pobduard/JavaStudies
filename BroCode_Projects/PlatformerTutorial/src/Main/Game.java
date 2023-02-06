@@ -18,8 +18,8 @@ public class Game implements Runnable{
 
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float SCALE = 1.2f;				//Intentar que la multiplicacion siempre sea un numero entero
-	public final static int TILES_IN_WIDTH = 26;		//Cuantos cuadrados queremos que sea de ancho
-	public final static int TILES_IN_HEIGHT = 14;		//Cuantos cuadrados queremos que sea de alto
+	public final static int TILES_IN_WIDTH = 26;		//Cuantos cuadrados queremos que sea de ancho, Los Visibles almenos
+	public final static int TILES_IN_HEIGHT = 14;		//Cuantos cuadrados queremos que sea de alto, Los Visibles almenos
 	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
 	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH ;
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT ;
