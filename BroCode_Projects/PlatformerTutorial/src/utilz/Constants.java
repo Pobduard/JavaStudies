@@ -1,6 +1,38 @@
 package utilz;
 
+import Main.Game;
+
 public class Constants {
+	public static class UI{
+		public static class Buttons {
+			public static final int B_WIDTH_DEFAULT = 140;
+			public static final int B_HEIGHT_DEFAULT = 56;
+			public static final int B_WIDTH = (int)(B_WIDTH_DEFAULT * Game.SCALE);
+			public static final int B_HEIGHT = (int)(B_HEIGHT_DEFAULT * Game.SCALE);
+		} 
+
+		public static class PauseButtons {
+			public static final int SOUND_BUTTON_SIZE_DEFAULT = 42;
+			public static final int SOUND_BUTTON_SIZE = (int)(SOUND_BUTTON_SIZE_DEFAULT * Game.SCALE);
+		}
+
+		public static class URMButtons {
+			public static final int URM_BUTTON_SIZE_DEFAULT = 56;
+			public static final int URM_BUTTON_SIZE = (int)(URM_BUTTON_SIZE_DEFAULT * Game.SCALE);
+		}
+
+		public static class VolumeButtons {
+			public static final int VOLUME_BUTTON_DEFAULT_WIDTH = 28;
+			public static final int VOLUME_BUTTON_DEFAULT_HEIGHT = 44;
+			public static final int SLIDER_DEFAULT_WIDTH = 215;			//La Height sera la misma de la del de arriba
+			
+			public static final int VOLUME_BUTTON_WIDTH = (int)(VOLUME_BUTTON_DEFAULT_WIDTH * Game.SCALE);
+			public static final int VOLUME_BUTTON_HEIGHT = (int)(VOLUME_BUTTON_DEFAULT_HEIGHT * Game.SCALE);
+			public static final int SLIDER_WIDTH = (int)(SLIDER_DEFAULT_WIDTH * Game.SCALE);
+		}
+
+	}
+
 	public static class Directions{
 		public static final int LEFT = 0;
 		public static final int UP = 1;

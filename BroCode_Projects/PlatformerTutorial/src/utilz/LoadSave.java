@@ -11,6 +11,12 @@ public class LoadSave {
 	public static final String PLAYER_ATLAS = "resources/player_sprites.png";
 	public static final String LEVEL_ATLAS = "resources/outside_sprites.png";
 	public static final String LEVEL_ONE_DATA = "resources/level_one_data.png";
+	public static final String MENU_BUTTONS = "resources/button_atlas.png";
+	public static final String MENU_BACKGROUND = "resources/menu_background.png";
+	public static final String PAUSE_BACKGROUND = "resources/pause_menu.png";
+	public static final String SOUND_BUTTONS = "resources/sound_button.png";
+	public static final String URM_BUTTONS = "resources/urm_buttons.png";
+	public static final String VOLUME_BUTTONS = "resources/volume_buttons.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage img = null;
