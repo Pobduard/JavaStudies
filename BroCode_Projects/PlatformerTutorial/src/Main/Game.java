@@ -17,7 +17,7 @@ public class Game implements Runnable{
 	private Menu menu;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1.5f;				//Intentar que la multiplicacion siempre sea un numero entero
+	public final static float SCALE = 1.2f;				//Intentar que la multiplicacion siempre sea un numero entero
 	public final static int TILES_IN_WIDTH = 26;		//Cuantos cuadrados queremos que sea de ancho
 	public final static int TILES_IN_HEIGHT = 14;		//Cuantos cuadrados queremos que sea de alto
 	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
@@ -56,7 +56,10 @@ public class Game implements Runnable{
 				// levelManager.update();
 				// player.update();		//lvl detras del jugador
 				break;
+			case OPTIONS:
+			case QUIT:
 			default:
+				System.exit(0);							//! va a terminar el Programa
 				break;
 
 	}

@@ -12,9 +12,9 @@ public class GameWindow extends JFrame{
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(gamePanel);
-		frame.setLocationRelativeTo(null);					//*Que Aparezca en medio de la pantalla */
 		frame.setResizable(false);
 		frame.pack();
+		frame.setLocationRelativeTo(null);					//*Que Aparezca en medio de la pantalla */
 		frame.setVisible(true);
 
 		frame.addWindowFocusListener(new WindowFocusListener(){

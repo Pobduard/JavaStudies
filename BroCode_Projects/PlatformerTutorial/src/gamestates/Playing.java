@@ -6,11 +6,14 @@ import java.awt.event.MouseEvent;
 
 import Levels.*;
 import Main.Game;
+import UI.PauseOverlay;
 import entities.*;
 
 public class Playing extends State implements Statemethods{
 	private Player player;
 	private LevelManager levelManager;
+	private PauseOverlay pauseOvelay;
+	private boolean paused = false;
 
 	public Playing(Game game){
 		super(game);
@@ -19,8 +22,9 @@ public class Playing extends State implements Statemethods{
 
 	private void initClasses() {
 		levelManager = new LevelManager(game);
-		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE));
+		player = new Player( (int)(200 * Game.SCALE) , (int)(200 * Game.SCALE) , (int) (64 * Game.SCALE), (int) (40 * Game.SCALE));
 		player.loadLvlData(levelManager.getCurrentLevel().getLvlData());
+		pauseOvelay = new PauseOverlay(this);
 	}
 
 	public void windowFocusLost() {
@@ -33,14 +37,21 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void update() {
-		levelManager.update();
-		player.update();
+		if(!paused){
+			levelManager.update();
+			player.update();
+		} else {
+					pauseOvelay.update();
+		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		levelManager.draw(g);
 		player.render(g);
+
+		if(paused)
+			pauseOvelay.draw(g);
 	}
 
 	@Override
@@ -50,19 +61,31 @@ public class Playing extends State implements Statemethods{
 		}
 	}
 
+	public void mouseDragged(MouseEvent e){
+		if(paused)
+			pauseOvelay.mouseDragged(e);
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+		if(paused)
+			pauseOvelay.mousePressed(e);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		if(paused)
+			pauseOvelay.mouseReleased(e);
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
+		if(paused)
+			pauseOvelay.mouseMoved(e);
+	}
+
+	public void unpauseGame(){
+		paused = false;
 	}
 
 	@Override
@@ -93,7 +116,7 @@ public class Playing extends State implements Statemethods{
 					player.setJump(true);
 					break;
 				case KeyEvent.VK_ESCAPE:
-					Gamestate.state = Gamestate.MENU;
+					paused = !paused;		//Siempre sera lo contrario
 					break;
 			}
 	}

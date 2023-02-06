@@ -17,7 +17,7 @@ public class Player extends Entity{
 	private boolean moving = false, attacking = false;
 
 
-	private float playerSpeed = 2.0f;
+	private float playerSpeed = 1.5f * Game.SCALE;
 	private int[][]	lvlData;
 
 	private float xDrawOffSet = 21 * Game.SCALE;	//Los pixels extra del "Hitbox" normal, a la "real" del jugador
@@ -37,7 +37,7 @@ public class Player extends Entity{
 		this.width = width;
 		this.height = height;
 		loadAnimations();
-		initHitBox(x, y, 20*Game.SCALE, 27*Game.SCALE);
+		initHitBox(x, y, (int)(20*Game.SCALE) , (int)(27*Game.SCALE));
 	}
 
 	public void update(){
