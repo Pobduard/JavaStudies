@@ -22,6 +22,7 @@ public class Player extends Entity{
 
 	private float xDrawOffSet = 21 * Game.SCALE;	//Los pixels extra del "Hitbox" normal, a la "real" del jugador
 	private float yDrawOffSet = 4 * Game.SCALE;		//Los pixels extra del "Hitbox" normal, a la "real" del jugador
+
 	//& Jumping / Gravity
 	private float airSpeed = 0f;
 	private float gravity = 0.02f * Game.SCALE;		//Mientras menor sea, mas alto saltara el jugador
